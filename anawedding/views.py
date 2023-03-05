@@ -7,6 +7,8 @@ def get_response(request):
         response = responses.get_responses(message)
         if response is None:
             response = "I'm sorry, I didn't understand your message. Could you please rephrase it?"
+        
         return render(request, 'anawedding/chatbot.html', context={'response': response})
     else:
         return render(request, 'anawedding/index.html')
+

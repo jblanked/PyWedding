@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Our Wedding - Home</title>
+  <title>Our Wedding - RSVP</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -49,10 +49,10 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="active" href="/">Home</a></li>
-          <li><a href="/details/">Details</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a  href="/details/">Details</a></li>
           <li><a href="/gallery/">Gallery</a></li>
-          <li><a href="/RSVP/">RSVP</a></li>
+          <li><a class="active" href="/RSVP/">RSVP</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -60,44 +60,84 @@
     </div>
   </header><!-- End Header -->
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero">
-    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
-      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
-
-      <div class="carousel-inner" role="listbox">
-
-        <!-- Slide 2 -->
-        <div class="carousel-item active" style="background-image: url({% static 'img/tori-2-1-3.jpg' %})">
-        </div>
-
-        <!-- Slide 1 -->
-        <div class="carousel-item" style="background-image: url({% static 'img/tori-2-1.jpg' %})">
-        </div>
-
-
-        <!-- Slide 3 -->
-        <div class="carousel-item" style="background-image: url({% static 'img/Wedding Banner-3.png' %})">
-        </div>
-
-      </div>
-
-      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-      </a>
-
-      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-      </a>
-
-    </div>
-  </section><!-- End Hero -->
 
   <main id="main">
+    <p>&nbsp;</p>
 
-    {% block content %}
-    {% endblock %}
+    <section id="contact-us" class="contact-us">
+        <div class="container" data-aos="fade-up">
+
+      
+          <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-8">
+              <form id="contact-form" name="contact-form" action="/RSVP/" method="post" role="form" class="php-email-form">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <label for="name">Your Full Name</label>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  </div>
+                  <div class="col-md-6 form-group mt-3 mt-md-0">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  </div>
+                </div>
+                <div class="form-group mt-3">
+                  <label for="subject">Phone Number</label>
+                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group mt-3">
+                  <label for="message">RSVP Names + Choices of Chicken or Steak</label>
+                  <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                </div>
+                <div class="my-3">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+                  <button type="submit" id="submit-button">RSVP</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <script>
+        const form = document.querySelector('#contact-form');
+        const submitButton = document.querySelector('#submit-button');
+        
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          const formData = new FormData(form);
+          
+          // Send form data to server using fetch API
+          fetch('/RSVP/', {
+            method: 'POST',
+            body: formData
+          })
+          .then((response) => {
+            if (response.ok) {
+              // Hide submit button and show success message
+              submitButton.style.display = 'none';
+              document.querySelector('.sent-message').style.display = 'block';
+              
+              // Redirect to success page after 2 seconds
+              setTimeout(() => {
+                window.location.href = '/RSVP/';
+              }, 2000);
+            } else {
+              // Handle error response
+              throw new Error('Form submission failed');
+            }
+          })
+          .catch((error) => {
+            // Show error message
+            document.querySelector('.error-message').textContent = error.message;
+          });
+        });
+      </script>
+  
   
   </main><!-- End #main -->
 

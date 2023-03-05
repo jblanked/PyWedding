@@ -1,50 +1,42 @@
+
 {% extends 'anawedding/base.html' %}
 {% block content %}
+
 
 <style>
     /* Center the chat window and message form */
     .parent-element {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        
+    }
+    h1{
+        font-size: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+    form{
+        margin-top: 10px;
     }
 
-    .chat-window, .message-form {
-        text-align: center;
-    }
-    
-    /* Increase font size of message box and form inputs */
-    .message-box, .message-form input {
-        font-size: 27px;
-    }
-    @media (max-width: 700px) {
-        /* Decrease font size for smaller screens */
-        .message-box, .message-form input {
-            font-size: 15px;
-        }
-    }
 </style>
-
 <div class="parent-element">
-    <div class="chat-window">
+    <div class="chat-window align-items-center justify-content-center">
         <div class="message-box received">
-            {{ response|linebreaks|urlize|safe }}
+          <h1>{{ response|linebreaks|urlize|safe }}</h1>
         </div>
-    </div>
-
-    <form class="message-form" method="post">
+      </div>
+    <form method="post" action="/">
         {% csrf_token %}
         <input type="text" name="message" placeholder="Enter a reponse">
         <input type="submit" value="Ask">
     </form>
-    <body>
-    Here are some suggestions:
-    <br></br>
-    <p>Attire, Location, Date, Registry, RSVP, Schedule, Donations, Etiquette, Gifts, Lodging</p> 
-    </body>
+    <p>&nbsp;</p>
+    <body> 
+
+    </body>  
 </div>
 {% endblock  %}
+

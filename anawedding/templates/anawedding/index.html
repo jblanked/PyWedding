@@ -9,29 +9,27 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+      
     }
     h1{
         font-size: 35px;
+        justify-content: center;
+        align-items: center;
     }
     form{
         margin-top: 35px;
     }
-    /* Media query for small screens */
-    @media (max-width: 700px) {
-        h1, h2 {
-            font-size: 16px;
-        }
-    }
+
 </style>
 <div class="parent-element">
     <h1>Welcome to Ana and Jacobie's wedding!!</h1>
     <h2>What would you like to know?</h2>
-    <form method="post" action="{% url 'get_response' %}">
+    <form method="post" action="/">
         {% csrf_token %}
         <input type="text" name="message" placeholder="Enter a reponse">
         <input type="submit" value="Ask">
     </form>
+    <p>&nbsp;</p>
     <body> 
     Here are some suggestions:
     <br></br>

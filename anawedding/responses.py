@@ -37,14 +37,13 @@ class WeddingPrep():
 ana_ring = "Test"
 cobie_ring = "Cobie's ring is: Vera Wang Three Stone Ring"
 rings = ana_ring + "\n" + cobie_ring
-venue = "It it located at "
+venue = "It it located at 36 Duneside Dr. Ocean Isle Beach, North Carolina"
 decorations = "For the decorations, we will be using outside string lights and other decorations from Ana's mom."
 guestbook = "The guestbook is a Vinyl record for our guests to sign"
 wedding_gifts = "The weddings gifts will be put in the gift station. We will also have a card box."
 kitty_sitter = "To feed the cats, we will pay Jerrod to visit every other day, then get Leye to watch them when we go on the honeymoon."
 registry = "List of items with linnks"
-ana_list = ""
-cobie_list = ""
+
 invitations = cobie_list + ana_list
 marriage_license = "Ana's Uncle is an officiant and has a marriage license."
 guest_attire = "Black and silver, semi-formal or cocktail. Please no light or bright colors."
@@ -165,7 +164,7 @@ def get_responses(message):
     if re.search(r"location|venue|where is it|where is the wedding|where is it|where's the location|where's the wedding|address", p_message):
         response_text = weddingprep.venue
         return response_text + adddd + addon
-    elif re.search(r"catering|dinner|what to eat|what we eat|what do we eat|menu", p_message):
+    elif re.search(r"catering|dinner|what to eat|what we eat|what do we eat|menu|food", p_message):
         response_text = reception_list.reception_food
         return response_text + adddd + addon
             
@@ -197,7 +196,7 @@ def get_responses(message):
         response_text = "Here's some information regarding options for lodging, activities in the area, parking, \n" +\
         "and everything you need to know about Ocean Isle Beach: \n" +\
             "\n" +\
-            "https://www.ananewberry.com/lodging-guide"
+            ""
         return response_text + adddd + addon
 
 
@@ -244,7 +243,7 @@ def get_responses(message):
     elif re.search(r"registry",p_message):
         response_text =  "You can checkout our registry here:  \n" +\
             " \n" +\
-            "https://www.amazon.com/wedding/share/jacobieandana \n" +\
+            "\n" +\
                 " \n" +\
                     "Please be sure to mark “Purchased” on any item you buy, so we do not end up with repeats."
         return response_text + adddd + addon
@@ -275,10 +274,7 @@ def get_responses(message):
         return response_text + adddd + addon
 
     elif re.search(r"rsvp",p_message):
-        response_text = "To RSVP, send a text to saying: \n" +\
-            " \n" +\
-            '"Hey this is (your first name and last name). \n' +\
-                 'I am confirming my RSVP for (first name and last name of each person)."'
+        response_text = "To RSVP, click the 'RSVP' tab in the top right" 
         return response_text + adddd + addon
 
     elif re.search(r"cocktail hour time|when is cocktail|what time is cocktail|what time cocktail",p_message):
@@ -293,7 +289,7 @@ def get_responses(message):
         response_text = "5pm: Guest Arrival \n" +\
         "5pm-6pm: Outdoor Cocktail Hour\n" +\
         "6pm: Ceremony\n" +\
-        "6:15pm: Ana & Jacobie IMMEDIATE family photos\n" +\
+        "6:15pm:  IMMEDIATE family photos\n" +\
         "6:15pm: All guests return to cocktail hour\n" +\
         "7pm: Buffet dinner\n" +\
         "8pm: Cake cutting \n" +\
